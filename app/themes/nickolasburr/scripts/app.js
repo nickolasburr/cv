@@ -41,5 +41,5 @@
 		});
 	}
 
-	$(document).ready(onReady);
+	$(document).ready(App.onReady);
 }).call(this, jQuery);
