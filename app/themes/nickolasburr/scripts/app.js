@@ -2,12 +2,18 @@
  * app.js: Main application JS file.
  */
 (function ($) {
+	var CV_WRAPPER_ROW_SELECTOR = '.main .cv .wrapper .row';
+
+	/**
+	 * Main JS object.
+	 */
 	var App = {};
 
 	// DOMContentLoaded event handler.
 	App.onReady = function () {
-		$('.main .cv .wrapper .row i').each(function () {
-			$(this).click(App.onToggleSection);
+		$('.main .cv .wrapper .row').each(function () {
+			$(this).find('i').click(App.onToggleSection);
+			$(this).find('.fieldname').click(App.onToggleSection);
 		});
 	}
 
@@ -25,18 +31,20 @@
 			blockClass  = 'block hidden';
 			buttonClass = 'fa fa-chevron-down closed';
 		}
-		$(block).attr('class', blockClass);
-		$(this).attr('class', buttonClass);
 
-		// Update the other blocks and buttons
-		$('.main .cv .wrapper .row i').each(function (index, element) {
-			if ($(element).attr('class') === $(button).attr('class') && element !== button) {
-				$(element).attr('class', 'fa fa-chevron-down closed');
+		$(block).attr('class', blockClass);
+		$(button).attr('class', buttonClass);
+
+		$(CV_WRAPPER_ROW_SELECTOR).each(function (index, element) {
+			var thisArrow = $(element).find('i');
+			var thisBlock = $(element).find('.block');
+
+			if ($(thisArrow).attr('class') === $(button).attr('class') && thisArrow !== button) {
+				$(thisArrow).attr('class', 'fa fa-chevron-down closed');
 			}
-		});
-		$('.main .cv .wrapper .row .block').each(function (index, element) {
-			if ($(element).attr('class') === $(block).attr('class') && element !== block[0]) {
-				$(element).attr('class', 'block hidden');
+
+			if ($(thisBlock).attr('class') === $(block).attr('class') && thisBlock !== block) {
+				$(thisBlock).attr('class', 'block hidden');
 			}
 		});
 	}
