@@ -21,19 +21,15 @@
 	App.onToggleSection = function (clickEvent) {
 		var buttonClass, blockClass;
 		var block = $(this).closest('.wrapper').find('.block');
-		var button = this;
-		var currentClass = block.attr('class');
+		var button = $(clickEvent.target.parentNode).find('i');
 
-		if (currentClass.indexOf('hidden') > -1) {
-			blockClass  = 'block visible';
-			buttonClass = 'fa fa-chevron-up open';
+		if ($(block).attr('class').indexOf('hidden') > -1) {
+			$(block).attr('class', 'block visible');
+			$(button).attr('class', 'fa fa-chevron-up open');
 		} else {
-			blockClass  = 'block hidden';
-			buttonClass = 'fa fa-chevron-down closed';
+			$(block).attr('class', 'block hidden');
+			$(button).attr('class', 'fa fa-chevron-down closed');
 		}
-
-		$(block).attr('class', blockClass);
-		$(button).attr('class', buttonClass);
 
 		$(CV_WRAPPER_ROW_SELECTOR).each(function (index, element) {
 			var thisArrow = $(element).find('i');
