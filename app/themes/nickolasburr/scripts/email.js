@@ -1,1 +1,50 @@
-(function(t){function e(){t(".email").click(i)}function i(e){var i=e.originalEvent;if(i.isTrusted){var n=t(".vemail");if(!n[0]){var a=document.createElement("a"),o=document.location.hostname.split(".")[1],r=String.fromCodePoint(64),c="gmail.com",l=o+r+c,m="?subject=Getting%20In%20Touch",u=e.target;u.textContent="",u.removeAttribute("name"),u.removeAttribute("class"),a.setAttribute("href","mailto:"+l+m),a.textContent=l,u.setAttribute("class","vemail"),u.appendChild(a)}}}t(document).ready(e)}).call(this,jQuery);
+/**
+ * email.js: Display email on click event.
+ */
+(function ($) {
+	/**
+	 * Main script object.
+	 */
+	var Email = {};
+
+	/*
+	 * _DOMContentLoaded_ event handler.
+	 */
+	Email.onContentLoaded = function () {
+		// add the click handler to the email veil `<span>`
+		$('.email').click(onReveal);
+	};
+
+	// reveal _click_ event handler
+	Email.onReveal = function (clickEvent) {
+		var nativeEvent = clickEvent.originalEvent;
+
+		if (!nativeEvent.isTrusted) {
+			return;
+		}
+
+		var vemail = $('.vemail');
+
+		if (vemail[0]) {
+			return;
+		}
+
+		var mailTo = document.createElement('a'),
+			username = document.location.hostname.split('.')[1],
+			locator = String.fromCodePoint(64),
+			provider = 'gmail.com',
+			email = username + locator + provider,
+			target = clickEvent.target;
+
+		/* Modify target element, append mailto: link. */
+		target.textContent = '';
+		target.removeAttribute('name');
+		target.removeAttribute('class');
+		mailTo.setAttribute('href', 'mailto:' + email);
+		mailTo.textContent = email;
+		target.setAttribute('class', 'vemail');
+		target.appendChild(mailTo);
+	};
+
+	$(document).ready(Email.onReveal);
+}).call(this, jQuery);
