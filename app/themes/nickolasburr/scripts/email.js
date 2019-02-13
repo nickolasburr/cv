@@ -12,7 +12,7 @@
 	 */
 	Email.onContentLoaded = function () {
 		// add the click handler to the email veil `<span>`
-		$('.email').click(onReveal);
+		$('.email').click(Email.onReveal);
 	};
 
 	// reveal _click_ event handler
