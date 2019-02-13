@@ -46,5 +46,5 @@
 		target.appendChild(mailTo);
 	};
 
-	$(document).ready(Email.onReveal);
+	$(document).ready(Email.onContentLoaded);
 }).call(this, jQuery);
