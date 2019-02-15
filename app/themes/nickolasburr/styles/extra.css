@@ -5,3 +5,7 @@
 .pdf {
   clear: both;
 }
+
+.pull-top-15px {
+  margin-top: -15px;
+}
