@@ -2,6 +2,14 @@
  * extra.css
  */
 
+.email {
+  border-radius: 2px !important;
+}
+
+.vemail {
+  margin: 3px auto;
+}
+
 .pdf {
   clear: both;
   padding: 5px 0;
